@@ -1,0 +1,4 @@
+.vim/dein/*
+!.vim/dein/dein.toml
+!.vim/dein/lazy.toml
+
