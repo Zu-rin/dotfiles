@@ -28,7 +28,9 @@ alias vi="nvim"
 alias ll="ls -lah --color=auto"
 alias upd="sudo apt update && sudo apt upgrade -y"
 alias win="cd /mnt/c/Users/takahiro"
+alias jj="cd ~/project-jj/tech_blog/backend-go"
 
+alias k="kubectl"
 alias dc="docker-compose"
 
 # zstyle ':completion:*:(cd|less|cat):*' matcher 'm:(a-z)=(A-Z)'
@@ -41,7 +43,12 @@ setopt correct
 setopt hist_ignore_dups
 setopt interactivecomments
 
+export PATH="$HOME/.anyenv/bin:$PATH"
+
 eval "$(sheldon source)"
 eval "$(anyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
+export PATH="$GOENV_ROOT/shims:$PATH"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/bin/openssl"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
