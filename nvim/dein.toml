@@ -1,0 +1,36 @@
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+hook_add = '''
+colorscheme tender
+let g:airline_theme = 'tender'
+'''
+
+[[plugins]]
+repo = 'antoinemadec/FixCursorHold.nvim'
+
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
+hook_add = '''
+augroup my-glyph-palette
+    autocmd! *
+    autocmd FileType fern call glyph_palette#apply()
+    autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
+'''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+source = 'release'
+build = 'coc#util#install()'
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
