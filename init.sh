@@ -1,9 +1,13 @@
 #!/bin/zsh
 
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.bashrc ~/.bashrc
-ln -s ~/dotfiles/.vimrc ~/.vimrc
-ln -s ~/dotfiles/.gitcogfig ~/.gitconfig
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/nvim ~/.config/nvim
-ln -s ~/dotfiles/.sheldon ~/.sheldon
+mkdir -p ~/.config
+touch ~/.zsh_history
+
+ln -f -s ~/dotfiles/.zshrc ~/.zshrc
+ln -f -s ~/dotfiles/.bashrc ~/.bashrc
+ln -f -s ~/dotfiles/.vimrc ~/.vimrc
+ln -f -s ~/dotfiles/.gitcogfig ~/.gitconfig
+ln -f -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -f -s ~/dotfiles/nvim ~/.config/nvim
+ln -f -s ~/dotfiles/.sheldon ~/.sheldon
+
