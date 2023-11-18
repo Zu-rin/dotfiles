@@ -19,7 +19,7 @@ alias gch="git checkout"
 alias gb="git branch"
 alias gd="git diff"
 
-alias dc="docker-compose"
+alias dc="docker compose"
 alias k="kubectl"
 
 alias python="python3"
@@ -58,12 +58,16 @@ export GOBIN=$GOPATH/bin
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.anyenv/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$(go env GOPATH)/bin:$PATH"
-
-# eval "$(sheldon source)"
-eval "$(anyenv init -)"
-eval "$(pyenv init -)"
+if which go > /dev/null 2>&1; then
+    export PATH="$(go env GOROOT)/bin:$PATH"
+    export PATH="$(go env GOPATH)/bin:$PATH"
+fi
+if which anyenv > /dev/null 2>&1; then
+    eval "$(anyenv init -)"
+fi
+if which pyenv > /dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/bin/openssl"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
