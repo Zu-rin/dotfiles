@@ -12,4 +12,4 @@ ln -f -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -f -s ~/dotfiles/nvim ~/.config/nvim
 ln -f -s ~/dotfiles/.sheldon ~/.sheldon
 ln -f -s ~/dotfiles/.ssh/config ~/.ssh/config
-ln -f -s ~/dotfiles/.ssh/authorized_keys ~/.ssh/authrized_keys
+ln -f -s ~/dotfiles/.ssh/authorized_keys ~/.ssh/authorized_keys
