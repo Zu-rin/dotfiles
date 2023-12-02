@@ -1,5 +1,12 @@
 source ~/dotfiles/.zsh/git.zsh
 
+function select-history() {
+  BUFFER=$(history -n -r 1 | fzf-tmux -d --reverse --no-sort +m --query "$LBUFFER" --prompt="History > ")
+    CURSOR=$#BUFFER
+}
+zle -N select-history
+bindkey '^r' select-history
+
 plugins=(... docker docker-compose)
 
 autoload -Uz promptinit
@@ -52,12 +59,11 @@ export LC_CTYPE=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export LESS=-R
 export PAGER=less
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.anyenv/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+
 if which go > /dev/null 2>&1; then
     export PATH="$(go env GOROOT)/bin:$PATH"
     export PATH="$(go env GOPATH)/bin:$PATH"
