@@ -1,45 +1,49 @@
-"dein Scripts=============================
+"" dein Scripts=============================
 if &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible               " Be iMproved "
 endif
 
-" plugin dir path
-let s:dein_dir = expand('~/dotfiles/.vim/dein')
-" dein.vim dir path
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-" toml dir path
-let s:toml_dir = s:dein_dir
+"" install dein.vim
+if &runtimepath !~# '/dein.vim'
+    let s:dein_dir = expand('~/.vim/dein')
+    if !isdirectory(s:dein_dir)
+        call mkdir(s:dein_dir, 'p')
+    endif
+    let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        call system('git clone https://github.com/Shougo/dein.vim' . s:dein_repo_dir)
+    endif
+endif
 
-" Required:
-set runtimepath+=/home/ubuntu/dotfiles/.vim/dein/repos/github.com/Shougo/dein.vim
+"" toml dir path
+let s:toml_dir = expand('~/dotfiles/.vim/dein')
+set runtimepath+=/home/takakuts/.vim/dein/repos/github.com/Shougo/dein.vim
 
-" Required:
+"" load plugins
 if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
-    " plugins to load at startup
+    "" plugins to load at startup
     call dein#load_toml(s:toml_dir . '/dein.toml', {'lazy': 0})
     
-    " plugins to load at using
+    "" plugins to load at using
     call dein#load_toml(s:toml_dir . '/lazy.toml', {'lazy': 1})
     
-    " Common plugins for neovim
+    "" Common plugins for neovim
     call dein#load_toml(s:toml_dir . '/share.toml', {'lazy': 0})
 
-    " Required:
     call dein#end()
     call dein#save_state()
 endif
 
-" Required:
 filetype plugin indent on
 
-" If you want to install not installed plugins on startup.
+"" If you want to install not installed plugins on startup.
 if dein#check_install()
     call dein#install()
 endif
 
-"End dein Scripts=========================
+"" End dein Scripts=========================
 
 syntax on
 
@@ -88,9 +92,9 @@ inoremap    <C-v>   <C-o>P
 nnoremap    <S-Tab>     <<
 inoremap    <S-Tab>     <C-o><<
 
-" Fern
+"" Fern
 nnoremap <C-]> :Fern . -reveal=% -drawer -toggle -width=30<CR>
 
-" fzf
+"" fzf
 nnoremap    <silent>    fzf :Files<CR>
 nnoremap    <silent>    ls  :Buffers<CR>

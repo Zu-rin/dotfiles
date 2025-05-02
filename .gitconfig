@@ -1,8 +1,3 @@
-[safe]
-	directory = /mnt/c/User/takahiro/Project_JJ/*
-
 [user]
-	email = s165810t@gmail.com
-	name = Zu_rin
-[core]
-	editor = vim
+	name = Zu-rin
+	email = zu_rin@team-jj.com
