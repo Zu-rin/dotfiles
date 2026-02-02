@@ -14,7 +14,7 @@ autoload -Uz colors; colors
 autoload -Uz compinit && compinit
 
 userHost="%B%F{green}%n@%m%f%b"
-currentDir="%B%F{blue}%~%f%b"
+currentDir="%B%F{cyan}%~%f%b"
 PROMPT="$userHost:$currentDir$ "
 
 alias g="git"
