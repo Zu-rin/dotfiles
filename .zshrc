@@ -55,7 +55,7 @@ setopt EXTENDED_HISTORY
 setopt interactivecomments
 
 export HISTFILE=~/.zsh_history
-export HISTSIZE=100000
+export HISTSIZE=500000
 export SAVEHIST=10000000
 export EDITOR=vim
 export LANG=en_US.utf8

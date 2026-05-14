@@ -13,3 +13,7 @@ ln -f -s ~/dotfiles/.fzf.zsh ~/.fzf.zsh
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
+
+# 1. `<Prefix> I` on tmux
+# 2. `vim` to install vim plugins
+# 3. `.vim/dein/repos/github.com/junegunn/fzf/install` to install fzf
