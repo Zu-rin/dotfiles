@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-[[ `uname -s` != Linux ]] && echo "" && exit 0
+[[ `uname -s` != Linux && `uname -s` != Darwin ]] && echo "" && exit 0
 
 if [[ $1 = "ssh" ]]; then
     pane_pid=$2

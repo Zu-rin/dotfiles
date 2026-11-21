@@ -6,6 +6,7 @@ function select-history() {
 }
 zle -N select-history
 bindkey '^r' select-history
+bindkey -e
 
 plugins=(... docker docker-compose)
 
@@ -13,7 +14,7 @@ autoload -Uz promptinit
 autoload -Uz colors; colors
 autoload -Uz compinit && compinit
 
-userHost="%B%F{green}%n@%m%f%b"
+userHost="%B%F{green}%n@MBA%f%b"
 currentDir="%B%F{cyan}%~%f%b"
 PROMPT="$userHost:$currentDir$ "
 
@@ -21,8 +22,9 @@ alias g="git"
 alias ga="git add"
 alias gA="git add -A"
 alias gc="git commit -m"
-alias gs="git status"
+alias gs="git switch"
 alias gch="git checkout"
+alias gss="git status"
 alias gb="git branch"
 alias gd="git diff"
 
@@ -58,8 +60,9 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=500000
 export SAVEHIST=10000000
 export EDITOR=vim
-export LANG=en_US.utf8
-export LC_CTYPE=en_US.utf8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 export LESSCHARSET=utf-8
 export LESS=-R
 export PAGER=less
@@ -67,6 +70,7 @@ export PAGER=less
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.anyenv/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 
 if which go > /dev/null 2>&1; then
     export PATH="$(go env GOROOT)/bin:$PATH"
@@ -82,6 +86,14 @@ fi
 # eval "$(anyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
+export KUBECONFIG=`find ~/.kube -maxdepth 1 -type f | paste -sd ':' -`
+while IFS= read -r _kubeconfig; do
+    _env="${${_kubeconfig:t}#config-}"
+    _name="k8s-$_env"   # :t は zsh のファイル名修飾子（= basename）
+    alias "$_name"="kubectl config use-context kubernetes-admin-$_env@$_name"
+done < <(find ~/.kube -maxdepth 1 -type f)
+unset _kubeconfig _name _env
+
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/bin/openssl"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
@@ -90,3 +102,7 @@ export FZF_TMUX_OPTS="-p"
 
 [ -f ~/.zshenv ] && source ~/.zshenv
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/takakuts/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
