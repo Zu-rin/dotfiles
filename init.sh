@@ -10,6 +10,17 @@ ln -f -s ~/dotfiles/tmux-scripts ~/.tmux/scripts
 ln -f -s ~/dotfiles/.sheldon ~/.sheldon
 ln -f -s ~/dotfiles/.fzf.zsh ~/.fzf.zsh
 
+# Claude Code: ~/.claude には認証情報や会話の履歴も置かれるため、
+# ディレクトリ全体ではなく自分で書いた設定だけを個別にリンクする
+mkdir -p ~/.claude/skills
+for target in CLAUDE.md settings.json hooks scripts skills/compact-prep; do
+  # 実体のファイルやディレクトリが既にあると、ln -sfn では置き換わらず中にリンクが作られるため退避する
+  if [ -e ~/.claude/$target ] && [ ! -L ~/.claude/$target ]; then
+    mv ~/.claude/$target ~/.claude/$target.bak.$(date +%Y%m%d%H%M%S)
+  fi
+  ln -sfn ~/dotfiles/claude/$target ~/.claude/$target
+done
+
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
