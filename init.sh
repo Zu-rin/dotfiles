@@ -5,9 +5,10 @@ ln -f -s ~/dotfiles/.bashrc ~/.bashrc
 ln -f -s ~/dotfiles/.vimrc ~/.vimrc
 ln -f -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -f -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -f -s ~/dotfiles/tmux-scripts ~/.tmux/scripts
+# 既にリンクがあると ln -sf はリンク先のディレクトリの中に新しいリンクを作ってしまうため、-n でリンク自体を置き換える
+ln -sfn ~/dotfiles/tmux-scripts ~/.tmux/scripts
 # ln -s ~/dotfiles/nvim ~/.config/nvim
-ln -f -s ~/dotfiles/.sheldon ~/.sheldon
+ln -sfn ~/dotfiles/.sheldon ~/.sheldon
 ln -f -s ~/dotfiles/.fzf.zsh ~/.fzf.zsh
 
 # Claude Code: ~/.claude には認証情報や会話の履歴も置かれるため、

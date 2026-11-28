@@ -6,6 +6,8 @@ function select-history() {
 }
 zle -N select-history
 bindkey '^r' select-history
+bindkey '^[^?' backward-kill-word
+# https://khasegawa.hatenablog.com/entry/2017/08/21/000000 意味わからんキレそう
 bindkey -e
 
 plugins=(... docker docker-compose)
